@@ -4,15 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+I am an engineer in Seattle, Washington. Currently I work for Boeing Research and Technology supporting automated wing assembly for the [777X][boeing-777x].
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+I grew up in Dallas, studied mechanical engineering at The University of Texas, and am working on a master's in electrical and computer engineering at The University of Washington.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+[boeing-777x]: https://www.boeing.com/commercial/777x/
