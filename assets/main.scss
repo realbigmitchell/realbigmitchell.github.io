@@ -20,4 +20,5 @@ pre, code { border: 1px solid #8a8a8a; background-color: rgb(26, 26, 26); }
 code { color: #d8d8d8}
 
 
-@media screen and (max-width: 600px) { .site-nav { background-color: #303030; border: 1px solid #ffffff; } }
+@media screen and (max-width: 600px) { .site-nav { background-color: #303030; border: 1px solid #ffffff; }
+  .site-nav .menu-icon > svg { fill: #c5c5c5; } }
