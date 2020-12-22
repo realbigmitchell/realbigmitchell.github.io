@@ -1,0 +1,20 @@
+---
+---
+@import "minima";
+
+body {background-color: #080808; color: rgb(255, 255, 255)}
+
+.site-title, .site-title:visited { color: #ffffff; }
+
+.site-nav .page-link { color: rgb(255, 255, 255); line-height: 1.5; }
+
+a { color: #6a99ff; text-decoration: none; }
+a:visited { color: #3957ff; }
+a:hover { color: rgb(162, 171, 253); text-decoration: underline; }
+
+// Footer text
+.footer-col-wrapper { font-size: 15px; color: #ffffff; margin-left: -15px; }
+
+/** Code formatting */
+pre, code { border: 1px solid #8a8a8a; background-color: rgb(26, 26, 26); }
+code { color: #d8d8d8}
