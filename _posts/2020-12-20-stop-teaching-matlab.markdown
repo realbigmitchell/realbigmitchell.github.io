@@ -3,7 +3,7 @@ layout: post
 title:  "Stop Teaching MATLAB to Engineering Students"
 description: "MATLAB considered harmful"
 #date: 
-draft: true
+hidden: true 
 categories: opinion
 ---
 
@@ -19,7 +19,7 @@ Big companies are going to do what big companies are going to do. This article i
 
 ## Why MATLAB is bad for engineering
 
-There are many reasons why MATLAB's ubiquity is a bad thing. Some of them are [technical], although I don't find those particularly compelling. MATLAB used to be much better than most languages at linear algebra and scientific computing, but the rapid development of the SciPy ecosystem has rendered any noteworthy performance gap with Python obsolete. Nowadays much of the Matlab vs. X argument, when centered around the type of programming that engineers most often do, tends to devolve into [quibbling] about syntax for linear algebra and array indexing. In my opinion, syntax is a thing to be either googled or memorized, and is most definitely not worth choosing a tool over.
+There are many reasons why MATLAB's ubiquity is a bad thing. Some of them are [technical], although I don't find those particularly compelling. MATLAB used to be much better than most languages at linear algebra and scientific computing, but the rapid development of the [SciPy] ecosystem has rendered any noteworthy performance gap with Python obsolete. Nowadays much of the Matlab vs. X argument, when centered around the type of programming that engineers most often do, tends to devolve into [quibbling] about syntax for linear algebra and array indexing. In my opinion, syntax is a thing to be either googled or memorized, and is most definitely not worth choosing a tool over.
 
 So what's wrong with MATLAB, then?
 
@@ -41,7 +41,7 @@ For comparison, not all general-purpose programming languages are open source, b
 
 At first glance, it might seem like the status quo here isn't really that bad. Mathworks gives educational discounts to universities, and the big companies who use MATLAB can afford it. Do we really need an open source alternative so that high school kids can learn signal processing?
 
-No. But the issues I outlined above are more than just missed opportunities. The gap between MATLAB and Python is just large enough to separate MATLAB users from the wider software community, isolating them from pathways like Stack Overflow, open source projects, and employee exchange through which new technologies and best practices tend to be transferred. I believe this isolation contributes to the increasingly frequent software blunders we see at legacy engineering companies. My issue with MATLAB is that it inhibits the broader engineering world from seeing software as a core competency, a skill set that should be integrated with traditional engineering disciplines like mechanical design or systems engineering.
+No. But the issues I outlined above are more than just missed opportunities. The gap between MATLAB and Python is just large enough to separate MATLAB users from the wider software community, isolating them from pathways like Stack Overflow, open source projects, and employee exchange through which new technologies and best practices tend to be transferred. MATLAB inhibits the broader engineering world from seeing software as a core competency, a skill set that should be integrated with traditional engineering disciplines like mechanical design or systems engineering. I believe this isolation contributes to the increasingly frequent software blunders we see at legacy engineering companies.
 
 Examples of software failures from large, traditional engineering companies have become alarmingly frequent in recent decades. The automotive industry has seen Silicon Valley make significant inroads into its market as software becomes increasingly critical to infotainment systems and self-driving capability. Toyota reached a multimillion dollar [settlement] in 2013 after embedded systems experts testified that defects in engine control software were capable of causing unintended acceleration incidents like the one that killed a woman in Oklahoma. Boeing's recent failures, from the 737 MAX disaster, to the Starliner launch failure, to the KC-46 remote vision system issues, all stem from deficiencies in the company's approach to software problems.
 
@@ -66,3 +66,4 @@ If you're interested in a similar take on this issue from a different community,
 [hundreds of millions]: https://www3.bostonglobe.com/business/2018/06/18/mathworks-expansion-could-bring-new-jobs-natick-next-five-years/kkuDtuCS0ykAJXkNf4tM7N/story.html
 [guides]: https://realpython.com/matlab-vs-python/
 [cheatsheets]: https://cheatsheets.quantecon.org/
+[SciPy]: https://www.scipy.org/

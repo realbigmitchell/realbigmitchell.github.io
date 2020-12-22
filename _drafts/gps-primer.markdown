@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "How GPS Actually Works: Calculating Position from Raw Android GNSS Measurements"
+description: "Where in the world is my Android phone?"
 # date: 2020-04-21 21:24:17 -0700
-draft: true
 categories: technical 
 ---
 

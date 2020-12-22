@@ -12,7 +12,7 @@
 
 * modify to add:
 
-```ruby
+```html
       {%- for post in site.posts -%}
         {% if post.draft %}
           {% if site.show_drafts %}
@@ -43,3 +43,7 @@
 ```
 
 * Now, you have a _drafts/ directory where you can work on posts that you aren't ready to publish. When you are ready to share them with others for review, you can move them to the _posts directory but keep the label draft:true in the post file. They won't be shown in your site index, but you can still view the page if you know the URL.
+
+https://www.fizerkhan.com/blog/posts/working-with-upcoming-posts-in-jekyll
+http://hamishwillee.github.io/2014/06/11/public-drafts-in-jekyll/
+https://kellysutton.com/2015/02/18/public-drafts-with-jekyll.html
