@@ -3,7 +3,7 @@ layout: post
 title: "How GPS Actually Works: Calculating Position from Raw Android GNSS Measurements"
 # date: 2020-04-21 21:24:17 -0700
 draft: true
-categories: jekyll update
+categories: technical 
 ---
 
 ## Introduction
