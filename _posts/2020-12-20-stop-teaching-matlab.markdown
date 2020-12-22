@@ -3,7 +3,7 @@ layout: post
 title:  "Stop Teaching MATLAB to Engineering Students"
 description: "MATLAB considered harmful"
 #date: 
-hidden: true 
+draft: true
 categories: opinion
 ---
 

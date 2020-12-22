@@ -13,7 +13,7 @@ layout: default
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
     <ul class="post-list">
       {%- for post in site.posts -%}
-        {% if post.hidden %}
+        {% if post.draft %}
           <!-- This post is hidden. Allow blog to be displayed in blog index only if show_drafts is enabled -->
           {% if site.show_drafts %}
             {% assign show_post = true %}
