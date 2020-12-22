@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Stop Teaching MATLAB to Engineering Students"
-description: "hello"
+description: "MATLAB considered harmful"
 #date: 
 draft: true
 categories: opinion
