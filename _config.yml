@@ -27,6 +27,7 @@ github_username:  realbigmitchell
 linkedin_username: mitchell-johnson-83515989 
 
 # Build settings
+show_drafts: true 
 theme: minima
 plugins:
   - jekyll-feed
