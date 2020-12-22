@@ -18,3 +18,6 @@ a:hover { color: rgb(162, 171, 253); text-decoration: underline; }
 /** Code formatting */
 pre, code { border: 1px solid #8a8a8a; background-color: rgb(26, 26, 26); }
 code { color: #d8d8d8}
+
+
+@media screen and (max-width: 600px) { .site-nav { background-color: #303030; border: 1px solid #ffffff; } }
