@@ -2,8 +2,7 @@
 layout: post
 title:  "Stop Teaching MATLAB to Engineering Students"
 description: "MATLAB considered harmful"
-#date: 
-draft: true
+date: 2020-12-20
 categories: opinion
 ---
 
