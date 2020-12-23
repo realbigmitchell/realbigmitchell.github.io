@@ -6,6 +6,7 @@ date: 2020-12-20
 categories: opinion
 ---
 
+{:toc}
 I went to school for mechanical engineering at the University of Texas. During my sophomore year, I was required to take a numerical methods course taught in MATLAB. Like many mechanical, aerospace, chemical, and civil engineering students across the United States, I learned how to use `if` statements and `for` loops, write functions, and approximate differential equations using the Runge-Kutta method. Also like many engineering students, I didn't find this material particularly inspiring. Sure, MATLAB makes it easy to analyze data and make nice graphs, but these capabilities essentially add up to a glorified version of Excel.
 
 A few years later I tried Python and fell in love. The magic of Python for me is its versatility. Need to analyze data? Numpy and Pandas have all the capability of MATLAB and more. Want to try machine learning? All of the libraries and frameworks target Python as their primary language. Web development? Django and Flask are used for some of the biggest sites in the world. Computer Vision? OpenCV's Python bindings are, in some cases, more popular and better documented than the primary C++ interface.
@@ -18,7 +19,7 @@ Big companies are going to do what big companies are going to do. This article i
 
 ## Why MATLAB is bad for engineering
 
-There are many reasons why MATLAB's ubiquity is a bad thing. Some of them are [technical], although I don't find those particularly compelling. MATLAB used to be much better than most languages at linear algebra and scientific computing, but the rapid development of the [SciPy] ecosystem has rendered any noteworthy performance gap with Python obsolete. Nowadays much of the Matlab vs. X argument, when centered around the type of programming that engineers most often do, tends to devolve into [quibbling] about syntax for linear algebra and array indexing. In my opinion, syntax is a thing to be either googled or memorized, and is most definitely not worth choosing a tool over.
+There are many reasons why MATLAB's ubiquity is a bad thing. Some of them are [technical](https://tobydriscoll.net/blog/matlab-vs.-julia-vs.-python/), although I don't find those particularly compelling. MATLAB used to be much better than most languages at linear algebra and scientific computing, but the rapid development of the [SciPy] ecosystem has rendered any noteworthy performance gap with Python obsolete. Nowadays much of the Matlab vs. X argument, when centered around the type of programming that engineers most often do, tends to devolve into [quibbling] about syntax for linear algebra and array indexing. In my opinion, syntax is a thing to be either googled or memorized, and is most definitely not worth choosing a tool over.
 
 So what's wrong with MATLAB, then?
 
@@ -58,7 +59,6 @@ In the more likely scenario that you're an engineer or student who uses MATLAB r
 
 If you're interested in a similar take on this issue from a different community, check out Olivia Guest's complaints about Matlab's use in the psychology research community in [I hate matlab]. Her argument about MATLAB's impact on the reproducibility of psychological research is less relevant to the engineering world but an important point nonetheless.
 
-[technical]: https://tobydriscoll.net/blog/matlab-vs.-julia-vs.-python/
 [I hate matlab]: https://neuroplausible.com/matlab
 [quibbling]: http://www.rath.org/matlab-is-a-terrible-programming-language.html
 [settlement]: https://www.latimes.com/business/la-xpm-2013-oct-25-la-fi-hy-toyota-damages-20131026-story.html
