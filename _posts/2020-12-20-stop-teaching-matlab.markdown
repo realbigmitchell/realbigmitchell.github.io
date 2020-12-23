@@ -18,6 +18,8 @@ In short, MATLAB is absolutely everywhere at big engineering companies where sof
 
 Big companies are going to do what big companies are going to do. This article is not intended as an appeal to corporate America. But MATLAB's continued popularity is perpetuated by engineering schools teaching MATLAB to the exclusion of other environments, and I believe that popularity is detrimental to the engineering and scientific community. I present Python as the best available alternative because it is free, open source, and possesses most of MATLAB's functionality with similar [syntax][cheatsheets] and additional capabilities in other domains.
 
+Before I go on I feel obliged to acknowledge that Simulink, MATLAB's graphical tool for simulating and analyzing dynamical systems, has no equal in Python or any other environment that I'm aware of. If you use MATLAB primarily for Simulink you can stop here - this article is not for you.
+
 ## Why MATLAB is bad for engineering
 
 There are many reasons why MATLAB's ubiquity is a bad thing. Some of them are [technical](https://tobydriscoll.net/blog/matlab-vs.-julia-vs.-python/), although I don't find those particularly compelling. MATLAB used to be much better than most languages at linear algebra and scientific computing, but the rapid development of the [SciPy] ecosystem has rendered any noteworthy performance gap with Python obsolete.
@@ -40,9 +42,15 @@ Python, by comparison, is free! So is almost every other general purpose program
 
 **MATLAB is not open source.** This means that the [hundreds of millions] of dollars in licensing fees paid to Mathworks every year go towards developing toolboxes and capabilities exclusively for large companies, rather than for the whole world to learn from. MATLAB has many specialized toolboxes that can be extremely useful for certain domains such as signal processing, optimization, and many others. Most of these toolboxes require not only a basic MATLAB license, but also a toolbox-specific license which can run in the hundreds of dollars.
 
-How many people could be exposed to the cutting edge in these fields if the state of the art tools were open source? Today we see high school students doing deep learning experiments with Pytorch. In fields where MATLAB is the standard, the only way to learn is to get a degree in engineering.
+Proponents of MATLAB  with the resources to afford these toolboxes will argue that their unrivaled functionality in niche applications justifies their exorbitant cost. They are not wrong, but I believe open source alternatives could be just as capable if big engineering companies supported them instead of throwing money at black-box solutions from Mathworks.
 
-For comparison, not all general-purpose programming languages are open source, but I'm not aware of any other programming environment where the library system is entirely pay-to-play.
+In addition, many of these same companies complain about their inability to hire qualified people in the specialized fields where MATLAB toolboxes are popular. How many people could be exposed to the cutting edge in signal processing or controls if the state of the art tools were free and open source?
+
+Ten years ago, few people had heard of neural networks and deep learning experts were being hired out of PhD programs with six-figure signing bonuses. Today high school students are building neural networks with Pytorch, the deep learning framework Facebook open sourced in 2016.
+
+In fields where MATLAB is the standard, the only way to learn is to get a degree in engineering.
+
+Not all general-purpose programming languages are open source, but I've never encountered a Python library that wasn't free. I'm not aware of any programming environment besides MATLAB where the library system is entirely pay-to-play.
 
 ## Why does this matter?
 
