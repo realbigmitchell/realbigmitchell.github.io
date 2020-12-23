@@ -2,15 +2,16 @@
 ---
 @import "{{ site.theme }}";
 
-body {background-color: #080808; color: rgb(255, 255, 255)}
+body {background-color: #050b18; color: rgba(255, 255, 255, 1.00)}
 
-.site-title, .site-title:visited { color: #ffffff; }
+h1, h2, h3, h4, h5, h6 { color: #ffffff; }
 
-.site-nav .page-link { color: rgb(255, 255, 255); line-height: 1.5; }
+// header text
+.site-title, .site-title:visited, .site-nav .page-link { color: #ffffff; }
 
-a { color: #6a99ff; text-decoration: none; }
-a:visited { color: #3957ff; }
-a:hover { color: rgb(162, 171, 253); text-decoration: underline; }
+// link text
+a, a:visited { color: rgb(27, 149, 224); text-decoration: none; }
+a:hover { color: rgb(162, 198, 253); text-decoration: underline; }
 
 // Footer text
 .footer-col-wrapper { font-size: 15px; color: #ffffff; margin-left: -15px; }
