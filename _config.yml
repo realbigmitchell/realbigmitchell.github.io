@@ -28,6 +28,7 @@ linkedin_username: mitchell-johnson-83515989
 
 # Build settings
 show_drafts: false 
+google_analytics: G-1Y0SLMNH4Y
 theme: minima
 plugins:
   - jekyll-feed
