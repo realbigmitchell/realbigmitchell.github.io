@@ -9,3 +9,5 @@ I am a software engineer in Seattle, Washington. My professional interests are i
 Currently I work for Boeing Defense, Space and Security developing software for [AEW&C Platforms](https://www.boeing.com/defense/airborne-early-warning-and-control/). Prior to this role I spent two years with Boeing Research and Technology supporting automated wing assembly for the [777-9](https://www.boeing.com/commercial/777x/) in Everett, WA.
 
 I grew up in Dallas and studied mechanical engineering at The University of Texas at Austin, where I helped found the ME [Undergraduate Advisory Board](https://www.me.utexas.edu/academics/student-community) and published [research](https://scholar.google.com/citations?user=tow0N3IAAAAJ&hl=en) on automated measurement of drilling mud viscosity. In December 2020 I completed a master's degree in electrical and computer engineering at The University of Washington.
+
+Here's a link to my [resume]({{site.url}}/assets/resume.pdf).
