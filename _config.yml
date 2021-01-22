@@ -28,9 +28,13 @@ linkedin_username: johnsonmitchelld
 # Build settings
 show_drafts: false 
 google_analytics: UA-186001269-1
-theme: minima
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
 plugins:
   - jekyll-feed
+
+theme: minima
 
 # Exclude from processing.
 # The following items will not be processed, by default.
