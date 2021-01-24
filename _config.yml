@@ -33,7 +33,8 @@ kramdown:
   math_engine: mathjax
 plugins:
   - jekyll-feed
-
+  - jekyll-seo-tag
+exclude: [/utilities]
 theme: minima
 
 # Exclude from processing.
