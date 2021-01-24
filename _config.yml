@@ -34,7 +34,7 @@ kramdown:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-exclude: [/utilities]
+exclude: [/utils]
 theme: minima
 
 # Exclude from processing.
