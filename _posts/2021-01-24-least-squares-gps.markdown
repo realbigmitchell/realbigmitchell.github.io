@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Calculating Receiver Position from Android Raw GNSS Measurements
+title: "Calculating Receiver Position from Android Raw GNSS Measurements"
 use_mathjax: true
 date: 2021-01-24
 draft: true
+categories: technical
 ---
 
 *This Jupyter notebook was written by [Mitchell Johnson](https://www.johnsonmitchelld.com/). The source code, as well as the gnssutils Python package containing the EphemerisManager module, can be found on [Github](https://github.com/johnsonmitchelld/gnss-analysis).*
