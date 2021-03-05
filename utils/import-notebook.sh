@@ -19,5 +19,8 @@ line=$(head -n 1 $dest_directory/_drafts/$filename.md)
 sed -i "s/<title>/${line#* }/g" $dest_directory/_drafts/temp
 sed -i "s/$line//g" $dest_directory/_drafts/$filename.md
 
+datetime=$(date "+%Y-%m-%d %H:%M:%S")
+sed -i "s/<date>/$datetime/g" $dest_directory/_drafts/temp
+
 cat $dest_directory/_drafts/$filename.md >> $dest_directory/_drafts/temp
 mv $dest_directory/_drafts/temp $dest_directory/_drafts/$filename.md
