@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "Calculating Receiver Position from Android Raw GNSS Measurements"
+title: Calculating Your Android's Position from Raw GNSS Pseudorange Measurements
+date: 2021-03-14 21:46:07
 use_mathjax: true
-date: 2021-01-24
-draft: true
-categories: technical
 ---
 
 *This Jupyter notebook was written by [Mitchell Johnson](https://www.johnsonmitchelld.com/). The source code, as well as the gnssutils Python package containing the EphemerisManager module, can be found on [Github](https://github.com/johnsonmitchelld/gnss-analysis).*
 
 ## Introduction
 
-Satellite navigation is absolutely fascinating. The GPS receiver in your smartphone uses concepts as diverse as orbital mechanics, digital signal processing, convex optimization, and Einstein's theory of relativity to determine your location anywhere on Earth within seconds. From the development of GPS in the 80's until the early 2010s, satellite navigation was a specialized tool used primarily by the military, airlines, surveyors, and private citizens fortunate enough to own an expensive personal receiver. Widespread GNSS receiver adoption in smartphones over the past decade, combined with the development of new GNSS constellations from China and the EU, have commoditized satellite navigation like never before.
+Satellite navigation is absolutely fascinating. The GPS receiver in your smartphone uses concepts as diverse as orbital mechanics, digital signal processing, convex optimization, and Einstein's theory of relativity to determine your location anywhere on Earth within seconds.
+
+From the development of GPS in the 80's until the early 2010s, satellite navigation was a specialized tool used primarily by the military, airlines, surveyors, and private citizens fortunate enough to own an expensive personal receiver. Widespread GNSS receiver adoption in smartphones over the past decade, combined with the development of new GNSS constellations from China and the EU, have commoditized satellite navigation like never before.
 
 Despite these changes, GNSS receivers were mostly black boxes until recently. Most standalone receivers output only a final position, velocity, and time solution, with dilution of precision and satellite signal-to-noise ratios included if you're lucky.
 
@@ -23,31 +23,29 @@ What's still missing is an approachable, easy-to-use platform for processing thi
 
 Notice that all of the open source options are either written in C/C++ or MATLAB. C and C++ are highly performant languages, but neither is particularly approachable without a software engineering background. MATLAB is much more familiar to engineers and scientists, but I believe its widespread use is harmful for reasons I outline [here](https://www.johnsonmitchelld.com/opinion/2020/12/20/stop-teaching-matlab.html).
 
-To address this void in approachable GNSS software packages built on open source platforms, I decided to develop my own. This Jupyter notebook, along with the accompanying EphemerisManager class, provide everything a user needs to calculate the position of their Android phone using recorded GNSS measurements. All that's necessary (in addition to the phone, of course) is an environment capable of running Jupyter notebooks.
+To address this void in approachable GNSS software packages built on open source platforms, I decided to develop my own. Engineering textbooks and technical papers provide derivations and explanations, but it is often difficult to translate mathematical equations into working code. The Jupyter notebook format allows me to place Markdown cells with equations and explanations in between lines of code. I will try to keep the code as similar as possible to the equations and reference individual equation numbers when necessary.
+
+This Jupyter notebook, along with the accompanying EphemerisManager class, provide everything a user needs to calculate the position of their Android phone using recorded GNSS measurements. All that's necessary (in addition to the phone, of course) is an environment capable of running Jupyter notebooks.
 
 I would like to thank the developers of the tools listed above. I used Google's [GPS Measurement Tools](https://github.com/google/gps-measurement-tools) and the European Space Agency's [GNSS resources](https://gage.upc.edu/tutorials/) as references while developing this project, in addition to many other sources mentioned below.
 
 ## Background
 
-First, a few definitions. GPS stands for Global Positioning System, which was developed by the US Air Force and first became operational in 1993. Russia has its own system, called GLONASS (Global Navigation Satellite System), which has been operational since 1995. China and the EU recently completed constellations called BeiDou and Galileo, respectively, and Japan and India have systems which do not (yet) provide global coverage. The generic term for these systems is GNSS, which stands for Global Navigation Satellite System. 
+This post assumes readers have a general idea of the principles used in triangulating receiver position from satellite signals. If you're completely unfamiliar, you may want to give my [previous post](https://www.johnsonmitchelld.com/technical/2021/03/05/gps-primer-1.html) a quick read before continuing.
 
-This post assumes readers have a general idea of the principles used in triangulating receiver position from satellite signals. If you're completely unfamiliar, you may want to give this howstuffworks [article](https://electronics.howstuffworks.com/gadgets/travel/gps.htm) a quick read before continuing.
-
-There are many types of GNSS receivers and positioning algorithms. Most modern receivers support both GPS and GLONASS, and Galileo and BeiDou have been adopted rapidly in consumer devices over the past few years. Once the signals are collected, a standard set of corrections are applied for:
+Once your receiver acquires a signal from four or more satellites, corrections are applied for:
 
 * Satellite clock bias (including relativistic effects)
 * Ionospheric delay
 * Rotation of the Earth during signal transmission time
 
-At this point positioning techniques begin to diverge. The basic techniques are, roughly in order of increasing accuracy:
+At this point positioning techniques begin to diverge. There are many types of GNSS receivers and positioning algorithms. The basic techniques are, roughly in order of increasing accuracy:
 
 * Simple unweighted least squares solution
 * Weighted least squares, with weights determined based on measurement uncertainty, signal strength, satellite elevation angle, etc.
 * Kalman filter, which uses information from prior position fixes to smooth position updates over time
 
-My goal for this post is to provide the simplest solution possible that still produces a usable position output. We will use the unweighted least squares approach, without correction for ionospheric delay or the rotation of the Earth during signal transmission. Ignoring satellite clock bias produces errors in the hundreds of kilometers, so we will correct for this in our solution.
-
-Engineering textbooks and technical papers provide derivations and explanations, but it is often difficult to translate mathematical equations into working code.The Jupyter notebook format allows me to place Markdown cells with equations and explanations in between lines of code. I will try to keep the code as similar as possible to the equations and reference individual equation numbers when necessary.
+My goal for this post is to provide the simplest solution possible that still produces a usable position output. Since using signals from multiple constellations requires accounting for different reference clocks and ephemeris formats between the systems, this solution uses GPS only. We will use the unweighted least squares approach, without correction for ionospheric delay or the rotation of the Earth during signal transmission. Ignoring satellite clock bias produces errors in the hundreds of kilometers, so we will correct for this in our solution.
 
 So, let's get started. The import process and data directory determination below assume that the Python interpreter's working directory is the same as this notebook, and that the gnssutils package and data repository are located in the parent directory. If that is not the case, you'll have to modify accordingly.
 
@@ -67,9 +65,9 @@ from gnssutils import EphemerisManager
 
 ## Data Aquisition
 
-The experiment below was conducted with a sample dataset I collected with Google's GnssLogger app on my Samsung Galaxy S9 Plus while driving through downtown Seattle. If you'd like to collect your own data and process it with this notebook, you can find the code and documentation [here](https://github.com/johnsonmitchelld/gnss-analysis).
+I collected this sample dataset using Google's GnssLogger app on my Samsung Galaxy S9 Plus while driving through downtown Seattle. If you'd like to collect your own data and process it with this notebook, you can find the code and documentation [here](https://github.com/johnsonmitchelld/gnss-analysis).
 
-Let's read a log file from the Android GnssLogger app and parse out the `Fix` and `Raw` entries, which represent Android location fixes and raw GNSS measurements, respectively. Then we'll format the satellite IDs in the raw data to match up with the RINEX 3.0 standard and convert the columns we need to calculate receiver position to numeric values. We'll also filter the data so that we're only working with GPS measurements to simplify the rest of the analysis.
+Let's read the log file from the Android GnssLogger app and parse out the `Fix` and `Raw` entries, which represent Android location fixes and raw GNSS measurements, respectively. Then we'll format the satellite IDs in the raw data to match up with the RINEX 3.0 standard and convert the columns we need to calculate receiver position to numeric values. We'll also filter the data so that we're only working with GPS measurements.
 
 
 ```python
@@ -144,7 +142,7 @@ print(measurements.columns)
 
 Those with experience in GNSS data processing will probably notice that we're missing a few important fields for calculating receiver position. For each satellite the process requires:
 
-* **Time of signal transmission** - in order to calculate the satellite's location when the signal was transmitted
+* **Time of signal transmission** - used to calculate the satellite's location when the signal was transmitted
 * **Measured pseudorange** - a rough estimate of the distance between each satellite and the receiver before correcting for clock biases, ionospheric delay, and other phenomena which we'll explain later
 * **Ephemeris parameters** - a set of parameters required to calculate the satellite's position in space
 
@@ -216,9 +214,9 @@ measurements['PrSigmaM'] = LIGHTSPEED * 1e-9 * measurements['ReceivedSvTimeUncer
 
 Now that we have pseudorange values, we can begin the standard process for calculating receiver position. First we need to retrieve the ephemeris data for each satellite from one of the International GNSS Service (IGS) analysis centers. These include NASA's [CDDIS](https://cddis.nasa.gov/Data_and_Derived_Products/GNSS/orbit_products.html) and the German [BKG](https://igs.bkg.bund.de/dataandproducts/index).
 
-This process is, frankly, a pain, so I wrote a Python module to handle the details. You can view the code and documentation [here](https://github.com/johnsonmitchelld/gnss-analysis/tree/main/gnssutils), but all you have to do is initialize an instance of the `EphemerisManager` class with a path to the directory where you want it to cache downloaded files. Then, provide the `get_ephemeris()` method with a Python datetime object and and list of satellites, and it will return a Pandas dataframe of valid ephemeris parameters for the requested satellites.
+This process is a pain, so I wrote a Python module to handle the details. You can view the code and documentation [here](https://github.com/johnsonmitchelld/gnss-analysis/tree/main/gnssutils), but all you have to do is initialize an instance of the `EphemerisManager` class with a path to the directory where you want it to cache downloaded files. Then, provide the `get_ephemeris()` method with a Python datetime object and and list of satellites, and it will return a Pandas dataframe of valid ephemeris parameters for those satellites.
 
-Broadcast ephemerides are good for four hours from the time they are issued, but the GPS control segment generally uploads new values every two hours. The `EphemerisManager` class downloads a whole day's worth of data at a time and then returns the most recent parameters at the requested time for each satellite. Because of this we're going to run the `get_ephemeris()` method for every epoch in case new parameters were issued since the last measurement was taken.
+Broadcast ephemerides are good for four hours from the time they are issued, but the GPS control segment generally uploads new values every two hours. The `EphemerisManager` class downloads a whole day's worth of data and then returns the most recent parameters at the requested time for each satellite. Because of this we're going to run the `get_ephemeris()` method for every epoch in case new parameters were issued since the last measurement was taken.
 
 For the sake of demonstration, let's start by walking through the position solution for just one measurement epoch. We'll use the first epoch in the dataset with measurements from at least five satellites.
 
@@ -332,7 +330,7 @@ sv_position = calculate_satellite_position(ephemeris, one_epoch['tTxSeconds'])
 print(sv_position)
 ```
 
-                 t_k   delT_sv           x_k           y_k           z_k
+    t_k   delT_sv           x_k           y_k           z_k
     sv                                                                  
     G05  4797.354393 -0.000027 -2.169285e+07  4.568031e+06  1.461087e+07
     G07  4797.362980 -0.000426 -3.714100e+06 -1.642940e+07  2.075276e+07
